@@ -6,7 +6,7 @@ create table savings (
 	amount decimal(10, 2)
 );
 go
-drop procedure if exists addsavings;
+drop procedure if exists seedsavings;
 go
 create procedure seedsavings
 	as 
@@ -38,6 +38,8 @@ create procedure seedsavings
 	END;
 go
 exec seedsavings;
+go
+drop procedure if exists addnewsavings;
 go
 create procedure addnewsavings
 	@date datetime, @memo nvarchar(80), @savings decimal(10, 2)

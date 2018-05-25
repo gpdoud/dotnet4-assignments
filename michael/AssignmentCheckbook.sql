@@ -10,8 +10,10 @@
   b) Memo of type string with max length 80
   c) Amount of type decimal with 2 decimal points
 */
+--drop table Savings;
 create table Savings
 (
+	Id int not null primary key identity(1,1),
 	Date datetime not null,
 	Memo nvarchar(80),
 	Amount decimal (12,2)
