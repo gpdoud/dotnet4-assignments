@@ -8,36 +8,46 @@ create table savings (
 go
 drop procedure if exists addsavings;
 go
-create procedure addsavings
+create procedure seedsavings
 	as 
 	BEGIN
 	insert into savings
 		(date, memo, amount)
 		values
-		(2017-01-01, 'Initial Deposit', 500)
+		('01-01-2017', 'Initial Deposit', 500)
 	insert into savings
 		(date, memo, amount)
 		values
-		(2017-02-15, 'Deposit check', 250)
+		('02-15-2017', 'Deposit check', 250)
 	insert into savings
 		(date, memo, amount)
 		values
-		(2017-03-07, 'Car Payment', -175)
+		('03-07-2017', 'Car Payment', -175)
 	insert into savings
 		(date, memo, amount)
 		values
-		(2017-04-11, 'Deposit birthday money', 200)
+		('04-11-2017', 'Deposit birthday money', 200)
 	insert into savings
 		(date, memo, amount)
 		values
-		(2017-05-251, 'Pay deposit on new stereo', -50)
+		('05-25-2017', 'Pay deposit on new stereo', -50)
 	insert into savings
 		(date, memo, amount)
 		values
-		(2019-12-31, 'Deposit Lotto winners', 1000000)
-	END
+		('12-31-2019', 'Deposit Lotto winners', 1000000)
+	END;
 go
-exec addsavings;
+exec seedsavings;
+go
+create procedure addnewsavings
+	@date datetime, @memo nvarchar(80), @savings decimal(10, 2)
+	as
+	BEGIN
+		insert into savings
+		(date, memo, amount)
+		values
+		(@date, @memo, @savings)
+	END;
 go
 update savings 
 	set 
@@ -49,7 +59,7 @@ delete from savings	where memo = 'Deposit Lotto winners';
 go
 select sum(amount) as 'Sum of Amt' from savings;
 go
-select format(date, 'd') as 'Date',
+select format(date, 'D') as 'Date',
 		Memo, 
 		format(amount, 'C') as 'Amount'
-from savings order by date;
+		from savings order by date;
