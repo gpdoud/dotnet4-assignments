@@ -29,7 +29,7 @@ go
 Create procedure PopulateTable
 	@Date date,
 	@Memo nvarchar(80),
-	@Amt decimal(10,2)
+	@Amt decimal(9,2)
 as
 begin
 	insert into Savings
@@ -53,6 +53,22 @@ go
 update Savings
 set amount = -200 
 where memo = 'Car payment' and amount = -175
+
+go
+
+--Procedure for updating car payment
+create procedure U_CarPmt
+	@Amt decimal(9,2),
+	@Memo nvarchar(80)
+As
+Begin
+	Update Savings
+	where memo = @Memo and amount = @Amt
+End
+
+go
+
+exec U_CarPmt -175,'Car Payment';
 
 go
 --Remove the Lotto winners row
