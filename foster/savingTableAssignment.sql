@@ -2,9 +2,10 @@ drop table savings
 go
 create table Savings
 (
-	Date datetime,
-	memo nvarchar(80),
-	amount decimal(10,2)
+	id int not null primary key identity(1,1),
+	Date datetime not null,
+	memo nvarchar(80) not null,
+	amount decimal(10,2) not null
 );
 
 
