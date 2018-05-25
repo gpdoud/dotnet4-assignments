@@ -10,7 +10,6 @@
   b) Memo of type string with max length 80
   c) Amount of type decimal with 2 decimal points
 */
-drop table Savings;
 create table Savings
 (
 	Date datetime not null,
