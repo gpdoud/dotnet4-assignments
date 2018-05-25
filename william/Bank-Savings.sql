@@ -52,9 +52,9 @@ create procedure PrintSavings
 as
 BEGIN
 
-select * from Savings
+select Date, Memo, Amount from Savings
 union all
-Select null, GETDATE(), 'Total', SUM(Amount) as Total from Savings;
+Select GETDATE(), '-----Total-----', SUM(Amount) as Total from Savings;
 
 END
 go
