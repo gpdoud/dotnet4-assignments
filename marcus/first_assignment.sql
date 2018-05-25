@@ -8,7 +8,7 @@ create table savings (
 go
 drop procedure if exists addsavings;
 go
-create procedure addsavings
+create procedure seedsavings
 	as 
 	BEGIN
 	insert into savings
@@ -37,7 +37,17 @@ create procedure addsavings
 		('12-31-2019', 'Deposit Lotto winners', 1000000)
 	END;
 go
-exec addsavings;
+exec seedsavings;
+go
+create procedure addnewsavings
+	@date datetime, @memo nvarchar(80), @savings decimal(10, 2)
+	as
+	BEGIN
+		insert into savings
+		(date, memo, amount)
+		values
+		(@date, @memo, @savings)
+	END;
 go
 update savings 
 	set 
